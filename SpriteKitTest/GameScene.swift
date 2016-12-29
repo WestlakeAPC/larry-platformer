@@ -8,8 +8,8 @@ import UIKit
 
 class GameScene: SKScene {
     
-    var xPlPos = (UIScreen.main.bounds.width * 0.1)-UIScreen.main.bounds.width*0.5
-    var yPlPos = (UIScreen.main.bounds.height * 0.5)-UIScreen.main.bounds.height*0.5
+    var xPlPos = UIScreen.main.bounds.width*0.5
+    var yPlPos = (UIScreen.main.bounds.height * 0.5)
     var xUpPos = (UIScreen.main.bounds.width-50.0)
     var yUpPos = (UIScreen.main.bounds.height-50.0)
     
@@ -25,7 +25,7 @@ class GameScene: SKScene {
         print(xUpPos)
         print(yUpPos)
         UP.position = CGPoint(x: xUpPos, y: yUpPos)
-        player?.position = CGPoint(x: 193, y: 193)
+        player?.position = CGPoint(x: xPlPos, y: yPlPos)
         proj.position = CGPoint(x: xPlPos, y: yPlPos)
         addChild(proj)
         addChild(UP)
@@ -79,7 +79,7 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             print("Position: \(t.location(in: view))")
-            print("UP: \(xUpPos),\(yUpPos)")
+            print("plsyer: \(xPlPos),\(yPlPos)")
             print(UIScreen.main.bounds.width)
             
             if (self.nodes(at: t.location(in: self)).contains(UP)) {
