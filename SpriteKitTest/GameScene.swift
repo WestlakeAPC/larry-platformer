@@ -27,7 +27,6 @@ class GameScene: SKScene {
         UP.position = CGPoint(x: xUpPos, y: yUpPos)
         player?.position = CGPoint(x: 193, y: 193)
         proj.position = CGPoint(x: xPlPos, y: yPlPos)
-        addChild(player!)
         addChild(proj)
         addChild(UP)
         //player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
