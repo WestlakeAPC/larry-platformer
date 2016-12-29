@@ -1,4 +1,4 @@
-# Larry Platformer, by @larry0618
+# Larry Platformer, by [@larry0618](https://github.com/larry0618/)
 @larry0618's private platformer test.
 
 # Attributions
