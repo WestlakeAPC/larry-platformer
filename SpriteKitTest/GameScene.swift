@@ -1,89 +1,94 @@
-//
-//  GameScene.swift
-//  SpriteKitTest
-//
-//  Created by Larry Li on 12/26/16.
-//  Copyright © 2016 Gameli. All rights reserved.
-//
-
 import SpriteKit
-import GameplayKit
+import UIKit
+#if os(watchOS)
+    import WatchKit
+    // <rdar://problem/26756207> SKColor typealias does not seem to be exposed on watchOS SpriteKit
+    typealias SKColor = UIColor
+#endif
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    var xPlPos = (UIScreen.main.bounds.width * 0.1)-UIScreen.main.bounds.width*0.5
+    var yPlPos = (UIScreen.main.bounds.height * 0.5)-UIScreen.main.bounds.height*0.5
+    var xUpPos = (UIScreen.main.bounds.width)-50.0
     
-    override func didMove(to view: SKView) {
+    var yUpPos = (UIScreen.main.bounds.height-50.0)
+    
+    let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
+    let player: SKSpriteNode = SKSpriteNode(imageNamed: "player")
+    let proj: SKSpriteNode = SKSpriteNode(imageNamed: "projectile")
+    
+    func setUpScene() {
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        let UP = SKSpriteNode(imageNamed: "UP")
+        let player = SKSpriteNode(imageNamed: "player")
+        let proj = SKSpriteNode(imageNamed: "projectile")
+        print(xUpPos)
+        print(yUpPos)
+        UP.position = CGPoint(x: xUpPos, y: yUpPos)
+        player.position = CGPoint(x: 193, y: 193)
+        proj.position = CGPoint(x: xPlPos, y: yPlPos)
+        addChild(player)
+        addChild(proj)
+        addChild(UP)
+        //player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
+    }
+    
+    // MARK: Platform conditional SKView initialization
+    #if os(watchOS)
+        override func sceneDidLoad() {
+            // Matching dimensions
+            self.size.width = WKInterfaceDevice.current().screenBounds.width * 2
+            self.size.height = WKInterfaceDevice.current().screenBounds.height * 2
+    
+            self.setUpScene()
         }
+    #elseif os(iOS) || os(tvOS)
+        override func didMove(to view: SKView) {
+            // Matching dimensions
+            self.size.width = UIScreen.main.bounds.width * 2
+            self.size.height = UIScreen.main.bounds.height * 2
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(M_PI), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
+            self.setUpScene()
         }
-    }
+    #elseif os(macOS)
+        override func didMove(to view: SKView) {
+            // Matching dimensions
+            self.size.width = (NSScreen.main()?.visibleFrame.width)! * 2
+            self.size.height = (NSScreen.main()?.visibleFrame.height)! * 2
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
+            self.setUpScene()
         }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
+    #endif
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        //player.position = CGPoint(x: xPos, y: yPos)
+        
+        
+    }
+    class func newGameScene() -> GameScene {
+        // Load 'GameScene.sks' as an SKScene.
+        guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
+            print("Failed to load GameScene.sks")
+            abort()
+        }
+        
+        // Set the scale mode to scale to fit the window
+        scene.scaleMode = .aspectFill
+        
+        return scene
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches {
+            print("Position: \(t.location(in: view))")
+            print("UP: \(xUpPos),\(yUpPos)")
+            print(UIScreen.main.bounds.width)
+            
+            if (self.nodes(at: t.location(in: self)).contains(UP)) {
+                print("Going UP.")
+            }
+        }
+        
     }
 }
+
