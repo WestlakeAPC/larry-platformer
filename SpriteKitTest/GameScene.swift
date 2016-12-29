@@ -9,9 +9,9 @@ import UIKit
 class GameScene: SKScene {
     
     var xPlPos = UIScreen.main.bounds.width*0.5
-    var yPlPos = (UIScreen.main.bounds.height * 0.5)
-    var xUpPos = (UIScreen.main.bounds.width-50.0)
-    var yUpPos = (UIScreen.main.bounds.height-50.0)
+    var yPlPos = UIScreen.main.bounds.height * 0.5
+    var xUpPos = UIScreen.main.bounds.width-50.0
+    var yUpPos = UIScreen.main.bounds.height-50.0
     
     let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
     let player: SKSpriteNode? = nil
@@ -22,9 +22,8 @@ class GameScene: SKScene {
         let UP = SKSpriteNode(imageNamed: "UP")
         let player = self.childNode(withName: "player")
         let proj = SKSpriteNode(imageNamed: "projectile")
-        print(xUpPos)
-        print(yUpPos)
         UP.position = CGPoint(x: xUpPos, y: yUpPos)
+        
         player?.position = CGPoint(x: xPlPos, y: yPlPos)
         proj.position = CGPoint(x: xPlPos, y: yPlPos)
         addChild(proj)
@@ -79,7 +78,8 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             print("Position: \(t.location(in: view))")
-            print("plsyer: \(xPlPos),\(yPlPos)")
+        
+            print("player: \(xPlPos),\(yPlPos)")
             print(UIScreen.main.bounds.width)
             
             if (self.nodes(at: t.location(in: self)).contains(UP)) {
