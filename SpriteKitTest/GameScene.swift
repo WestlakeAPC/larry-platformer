@@ -24,6 +24,7 @@ class GameScene: SKScene {
         let player = childNode(withName: "player")
         let proj = SKSpriteNode(imageNamed: "projectile")
         UP.position = CGPoint(x: xUpPos, y: yUpPos)
+        UP.setScale(3)
         
         player?.position = CGPoint(x: xPlPos, y: yPlPos)
         proj.position = CGPoint(x: xPlPos, y: yPlPos)
