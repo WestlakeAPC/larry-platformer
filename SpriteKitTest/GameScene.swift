@@ -11,8 +11,8 @@ class GameScene: SKScene {
     
     var xPlPos = UIScreen.main.bounds.width * 0.1 * 2// For Screen Size
     var yPlPos = UIScreen.main.bounds.height * 0.55 * 2// For Screen Size
-    var xUpPos = UIScreen.main.bounds.width-50.0 * 2
-    var yUpPos = UIScreen.main.bounds.height-50.0 * 2
+    var xUpPos = 50.0 * 2 //Hardcoded, but fits for all screen so it reachable with fingers
+    var yUpPos = 50.0 * 2
     
     let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
     let player: SKSpriteNode? = nil

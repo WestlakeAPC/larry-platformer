@@ -15,10 +15,6 @@
 		522574BE1E11FD1200333C15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522574BC1E11FD1200333C15 /* Main.storyboard */; };
 		522574C01E11FD1200333C15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522574BF1E11FD1200333C15 /* Assets.xcassets */; };
 		522574C31E11FD1200333C15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522574C11E11FD1200333C15 /* LaunchScreen.storyboard */; };
-		5255DFAB1E15875B0043B197 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522574B81E11FD1200333C15 /* GameScene.swift */; };
-		5255DFAD1E15877B0043B197 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 522574B61E11FD1200333C15 /* Actions.sks */; };
-		5255DFAE1E15877F0043B197 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 522574B41E11FD1200333C15 /* GameScene.sks */; };
-		5255DFAF1E15878F0043B197 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522574BF1E11FD1200333C15 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,18 +28,10 @@
 		522574BF1E11FD1200333C15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		522574C21E11FD1200333C15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		522574C41E11FD1200333C15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5255DF941E1586CF0043B197 /* SKT tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SKT tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		522574AC1E11FD1200333C15 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5255DF911E1586CF0043B197 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -65,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				522574AF1E11FD1200333C15 /* SpriteKitTest.app */,
-				5255DF941E1586CF0043B197 /* SKT tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,23 +93,6 @@
 			productReference = 522574AF1E11FD1200333C15 /* SpriteKitTest.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5255DF931E1586CF0043B197 /* SKT tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5255DFAA1E1586CF0043B197 /* Build configuration list for PBXNativeTarget "SKT tvOS" */;
-			buildPhases = (
-				5255DF901E1586CF0043B197 /* Sources */,
-				5255DF911E1586CF0043B197 /* Frameworks */,
-				5255DF921E1586CF0043B197 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "SKT tvOS";
-			productName = "SKT tvOS";
-			productReference = 5255DF941E1586CF0043B197 /* SKT tvOS.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -134,10 +104,6 @@
 				ORGANIZATIONNAME = Gameli;
 				TargetAttributes = {
 					522574AE1E11FD1200333C15 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Manual;
-					};
-					5255DF931E1586CF0043B197 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Manual;
 					};
@@ -157,7 +123,6 @@
 			projectRoot = "";
 			targets = (
 				522574AE1E11FD1200333C15 /* SpriteKitTest */,
-				5255DF931E1586CF0043B197 /* SKT tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -175,16 +140,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5255DF921E1586CF0043B197 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5255DFAF1E15878F0043B197 /* Assets.xcassets in Resources */,
-				5255DFAE1E15877F0043B197 /* GameScene.sks in Resources */,
-				5255DFAD1E15877B0043B197 /* Actions.sks in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -195,14 +150,6 @@
 				522574B91E11FD1200333C15 /* GameScene.swift in Sources */,
 				522574BB1E11FD1200333C15 /* GameViewController.swift in Sources */,
 				522574B31E11FD1200333C15 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5255DF901E1586CF0043B197 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5255DFAB1E15875B0043B197 /* GameScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,40 +296,6 @@
 			};
 			name = Release;
 		};
-		5255DFA81E1586CF0043B197 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "SKT tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.li.SKT-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-			};
-			name = Debug;
-		};
-		5255DFA91E1586CF0043B197 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "SKT tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.li.SKT-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -403,14 +316,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		5255DFAA1E1586CF0043B197 /* Build configuration list for PBXNativeTarget "SKT tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5255DFA81E1586CF0043B197 /* Debug */,
-				5255DFA91E1586CF0043B197 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
