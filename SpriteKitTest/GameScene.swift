@@ -8,10 +8,11 @@ import UIKit
 
 class GameScene: SKScene {
     
-    var xPlPos = UIScreen.main.bounds.width*0.5
-    var yPlPos = UIScreen.main.bounds.height * 0.5
-    var xUpPos = UIScreen.main.bounds.width-50.0
-    var yUpPos = UIScreen.main.bounds.height-50.0
+    
+    var xPlPos = UIScreen.main.bounds.width * 0.1 * 2// For Screen Size
+    var yPlPos = UIScreen.main.bounds.height * 0.55 * 2// For Screen Size
+    var xUpPos = UIScreen.main.bounds.width-50.0 * 2
+    var yUpPos = UIScreen.main.bounds.height-50.0 * 2
     
     let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
     let player: SKSpriteNode? = nil
@@ -20,7 +21,7 @@ class GameScene: SKScene {
     func setUpScene() {
         
         let UP = SKSpriteNode(imageNamed: "UP")
-        let player = self.childNode(withName: "player")
+        let player = childNode(withName: "player")
         let proj = SKSpriteNode(imageNamed: "projectile")
         UP.position = CGPoint(x: xUpPos, y: yUpPos)
         
@@ -28,6 +29,7 @@ class GameScene: SKScene {
         proj.position = CGPoint(x: xPlPos, y: yPlPos)
         addChild(proj)
         addChild(UP)
+        NSLog(NSStringFromCGPoint((player?.position)!));
         //player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
     }
     
@@ -45,7 +47,6 @@ class GameScene: SKScene {
             // Matching dimensions
             self.size.width = UIScreen.main.bounds.width * 2
             self.size.height = UIScreen.main.bounds.height * 2
-        
             self.setUpScene()
         }
     #elseif os(macOS)
