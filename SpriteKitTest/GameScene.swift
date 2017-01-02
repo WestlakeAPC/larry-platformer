@@ -5,6 +5,7 @@ import UIKit
     // <rdar://problem/26756207> SKColor typealias does not seem to be exposed on watchOS SpriteKit
     typealias SKColor = UIColor
 #endif
+var x = 0
 
 class GameScene: SKScene {
     
@@ -13,24 +14,26 @@ class GameScene: SKScene {
     var yPlPos = UIScreen.main.bounds.height * 0.55 * 2// For Screen Size
     var xUpPos = 50.0 * 2 //Hardcoded, but fits for all screen so it reachable with fingers
     var yUpPos = 50.0 * 2
-    
+    var xPrPos = UIScreen.main.bounds.height * 0.1 * 2// For Screen Size
+    var yPrPos = UIScreen.main.bounds.height * 0.55 * 2// For Screen Size
     let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
     let player: SKSpriteNode? = nil
     let proj: SKSpriteNode = SKSpriteNode(imageNamed: "projectile")
+    var projArray = [SKSpriteNode]()
+    var pressNotifier = false
     
     func setUpScene() {
         
-        let UP = SKSpriteNode(imageNamed: "UP")
         let player = childNode(withName: "player")
-        let proj = SKSpriteNode(imageNamed: "projectile")
+        proj.position = CGPoint(x: xPlPos, y: yPlPos)
         UP.position = CGPoint(x: xUpPos, y: yUpPos)
         UP.setScale(3)
         
         player?.position = CGPoint(x: xPlPos, y: yPlPos)
-        proj.position = CGPoint(x: xPlPos, y: yPlPos)
-        addChild(proj)
+        
+        
         addChild(UP)
-        NSLog(NSStringFromCGPoint((player?.position)!));
+        
         //player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
     }
     
@@ -61,7 +64,33 @@ class GameScene: SKScene {
     #endif
     
     override func update(_ currentTime: TimeInterval) {
-        //player.position = CGPoint(x: xPos, y: yPos)
+        if pressNotifier == true { // Need to run this every frame after the first press after all the projectile are offscreen
+            outOfScreen()
+            //print(projArray[0].position.x)
+        }
+        
+        
+        
+
+        }
+    func didFire() {
+        
+        let proj = SKSpriteNode(imageNamed: "projectile")
+        projArray.append(proj)
+        proj.position = CGPoint(x: xPrPos, y: yPrPos)
+
+        proj.zPosition = 1000
+        addChild(proj)
+        
+        
+        let moveRight = SKAction.moveBy(x: ((UIScreen.main.bounds.width*2)+20), y: 0.0, duration: 3)
+        
+        print((UIScreen.main.bounds.width*2)-50)
+        
+        for x in 1...projArray.count {
+            projArray[(x-1)].run(moveRight)
+        }
+        
         
         
     }
@@ -79,16 +108,24 @@ class GameScene: SKScene {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
-            print("Position: \(t.location(in: view))")
-        
-            print("player: \(xPlPos),\(yPlPos)")
-            print(UIScreen.main.bounds.width)
-            
-            if (self.nodes(at: t.location(in: self)).contains(UP)) {
-                print("Going UP.")
+            let tlocation = t.location(in: self)
+            didFire()
+            pressNotifier = true
+            if UP.contains(_: tlocation) == true {
+                didFire()
             }
+            print(t.location(in: view))
+            
+
         }
-        
+    }
+    func outOfScreen() {
+        if (projArray[0].position.x > ((UIScreen.main.bounds.width*2)-50)) {
+            //!proj.intersects(self)
+            projArray[0].removeFromParent()
+            projArray.remove(at: 0)
+            pressNotifier = false
+
+        }
     }
 }
-
