@@ -113,9 +113,9 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let tlocation = t.location(in: self)
-            didFire()
+            
             pressNotifier = true
-            if UP.contains(_: tlocation) == true {
+            if tlocation.x > UIScreen.main.bounds.width/2 {
                 didFire()
             }
             print(t.location(in: view))
