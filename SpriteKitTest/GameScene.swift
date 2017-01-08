@@ -64,7 +64,11 @@ class GameScene: SKScene {
     #endif
     
     override func update(_ currentTime: TimeInterval) {
-        if pressNotifier == true { // Need to run this every frame after the first press after all the projectile are offscreen
+        
+        if projArray.count > 0 {
+            pressNotifier = true
+        }
+        if pressNotifier == true { // Need to run this every frame after the first press and after all the projectiles are offscreen
             outOfScreen()
             //print(projArray[0].position.x)
         }
@@ -85,11 +89,11 @@ class GameScene: SKScene {
         
         let moveRight = SKAction.moveBy(x: ((UIScreen.main.bounds.width*2)+20), y: 0.0, duration: 3)
         
-        print((UIScreen.main.bounds.width*2)-50)
+//        print((UIScreen.main.bounds.width*2)-50)
         
-        for x in 1...projArray.count {
-            projArray[(x-1)].run(moveRight)
-        }
+//        for x in 1...projArray.count {
+            projArray[(projArray.count)-1].run(moveRight)
+//        }
         
         
         
@@ -125,7 +129,9 @@ class GameScene: SKScene {
             projArray[0].removeFromParent()
             projArray.remove(at: 0)
             pressNotifier = false
-
+            
+            
+            
         }
     }
 }
