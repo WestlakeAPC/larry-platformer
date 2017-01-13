@@ -11,11 +11,11 @@ class GameScene: SKScene {
     
     
     var xPlPos = UIScreen.main.bounds.width * 0.1 * 2// For Screen Size
-    var yPlPos = UIScreen.main.bounds.height * 0.55 * 2// For Screen Size
+    var yPlPos = UIScreen.main.bounds.height-UIScreen.main.bounds.height+350.0 // Background always is same distance to bottom so player needs to touch the ground
     var xUpPos = 50.0 * 2 //Hardcoded, but fits for all screen so it reachable with fingers
     var yUpPos = 50.0 * 2
     var xPrPos = UIScreen.main.bounds.height * 0.1 * 2// For Screen Size
-    var yPrPos = UIScreen.main.bounds.height * 0.55 * 2// For Screen Size
+    var yPrPos = UIScreen.main.bounds.height-UIScreen.main.bounds.height+325.0
     let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
     let player: SKSpriteNode? = nil
     let proj: SKSpriteNode = SKSpriteNode(imageNamed: "projectile")
@@ -70,7 +70,7 @@ class GameScene: SKScene {
         }
         if pressNotifier == true { // Need to run this every frame after the first press and after all the projectiles are offscreen
             outOfScreen()
-            //print(projArray[0].position.x)
+            print(projArray.count)
         }
         
         
@@ -114,9 +114,10 @@ class GameScene: SKScene {
         for t in touches {
             let tlocation = t.location(in: self)
             
-            pressNotifier = true
-            if tlocation.x > UIScreen.main.bounds.width/2 {
+            
+            if tlocation.x > UIScreen.main.bounds.width {
                 didFire()
+                pressNotifier = true
             }
             print(t.location(in: view))
             
