@@ -68,9 +68,10 @@ class GameScene: SKScene {
         if projArray.count > 0 {
             pressNotifier = true
         }
-        if pressNotifier == true { // Need to run this every frame after the first press and after all the projectiles are offscreen
-            outOfScreen()
+        if pressNotifier == true { // Need to run this every frame after the first press and not after all the projectiles are offscreen
+            
             print(projArray.count)
+            outOfScreen()
         }
         
         
@@ -115,7 +116,7 @@ class GameScene: SKScene {
             let tlocation = t.location(in: self)
             
             
-            if tlocation.x > UIScreen.main.bounds.width {
+            if tlocation.x > UIScreen.main.bounds.width && projArray.count < 5 {
                 didFire()
                 pressNotifier = true
             }
