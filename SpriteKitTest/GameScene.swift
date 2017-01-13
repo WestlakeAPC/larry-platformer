@@ -14,13 +14,14 @@ class GameScene: SKScene {
     var yPlPos = UIScreen.main.bounds.height-UIScreen.main.bounds.height+350.0 // Background always is same distance to bottom so player needs to touch the ground
     var xUpPos = 50.0 * 2 //Hardcoded, but fits for all screen so it reachable with fingers
     var yUpPos = 50.0 * 2
-    var xPrPos = UIScreen.main.bounds.height * 0.1 * 2// For Screen Size
+    var xPrPos = UIScreen.main.bounds.width * 0.1 * 2// For Screen Size
     var yPrPos = UIScreen.main.bounds.height-UIScreen.main.bounds.height+325.0
     let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
     let player: SKSpriteNode? = nil
     let proj: SKSpriteNode = SKSpriteNode(imageNamed: "projectile")
     var projArray = [SKSpriteNode]()
     var pressNotifier = false
+    var maxFireRate = 5
     
     func setUpScene() {
         
@@ -116,7 +117,7 @@ class GameScene: SKScene {
             let tlocation = t.location(in: self)
             
             
-            if tlocation.x > UIScreen.main.bounds.width && projArray.count < 5 {
+            if tlocation.x > UIScreen.main.bounds.width && projArray.count < maxFireRate {
                 didFire()
                 pressNotifier = true
             }
@@ -131,8 +132,6 @@ class GameScene: SKScene {
             projArray[0].removeFromParent()
             projArray.remove(at: 0)
             pressNotifier = false
-            
-            
             
         }
     }
