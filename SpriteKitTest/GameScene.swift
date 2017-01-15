@@ -29,7 +29,7 @@ class GameScene: SKScene {
         proj.position = CGPoint(x: xPlPos, y: yPlPos)
         UP.position = CGPoint(x: xUpPos, y: yUpPos)
         UP.setScale(3)
-        
+        //UP.texture = SKTexture(imageNamed: "projectile")
         player?.position = CGPoint(x: xPlPos, y: yPlPos)
         
         
@@ -91,11 +91,8 @@ class GameScene: SKScene {
         
         let moveRight = SKAction.moveBy(x: ((UIScreen.main.bounds.width*2)+20), y: 0.0, duration: 3)
         
-//        print((UIScreen.main.bounds.width*2)-50)
-        
-//        for x in 1...projArray.count {
-            projArray[(projArray.count)-1].run(moveRight)
-//        }
+        projArray[(projArray.count)-1].run(moveRight)
+
         
         
         
@@ -116,6 +113,9 @@ class GameScene: SKScene {
         for t in touches {
             let tlocation = t.location(in: self)
             
+            if UP.contains(tlocation) {
+                print("UP")
+            }
             
             if tlocation.x > UIScreen.main.bounds.width && projArray.count < maxFireRate {
                 didFire()
