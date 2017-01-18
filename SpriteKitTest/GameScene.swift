@@ -5,7 +5,7 @@ import UIKit
     // <rdar://problem/26756207> SKColor typealias does not seem to be exposed on watchOS SpriteKit
     typealias SKColor = UIColor
 #endif
-var x = 0
+
 
 class GameScene: SKScene {
     
@@ -23,6 +23,7 @@ class GameScene: SKScene {
     var pressNotifier = false
     var maxFireRate = 5
     
+
     func setUpScene() {
         
         let player = childNode(withName: "player")
@@ -113,9 +114,7 @@ class GameScene: SKScene {
         for t in touches {
             let tlocation = t.location(in: self)
             
-            if UP.contains(tlocation) {
-                print("UP")
-            }
+            
             
             if tlocation.x > UIScreen.main.bounds.width && projArray.count < maxFireRate {
                 didFire()
@@ -135,4 +134,5 @@ class GameScene: SKScene {
             
         }
     }
+    
 }
