@@ -44,27 +44,26 @@ class GameScene: SKScene {
     var yUpPos = 50.0 * 2
     var xPrPos = UIScreen.main.bounds.width * 0.1 * 2// For Screen Size
     var yPrPos = UIScreen.main.bounds.height-UIScreen.main.bounds.height+325.0
-    let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
-    let player: SKSpriteNode? = nil
+    //let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
+    var player : SKSpriteNode?
     let proj: SKSpriteNode = SKSpriteNode(imageNamed: "projectile")
     var projArray = [SKSpriteNode]()
     var pressNotifier = false
     var maxFireRate = 5
-    
 
     func setUpScene() {
         
-        let player = childNode(withName: "player")
+        //let player = childNode(withName: "player")
+        self.player = self.childNode(withName: "player") as? SKSpriteNode
         proj.position = CGPoint(x: xPlPos, y: yPlPos)
-        UP.position = CGPoint(x: xUpPos, y: yUpPos)
-        UP.setScale(3)
-        //UP.texture = SKTexture(imageNamed: "projectile")
+        
         player?.position = CGPoint(x: xPlPos, y: yPlPos)
         
         
-        addChild(UP)
+        
         
         //player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
+        
     }
     
     // MARK: Platform conditional SKView initialization
@@ -143,10 +142,12 @@ class GameScene: SKScene {
             let tlocation = t.location(in: self)
             
             
-            
             if tlocation.x > UIScreen.main.bounds.width && projArray.count < maxFireRate {
                 didFire()
                 pressNotifier = true
+            }
+            if tlocation.x < UIScreen.main.bounds.width && player!.position.y == yPlPos {
+                print("JUMP")
             }
             print(t.location(in: view))
             
