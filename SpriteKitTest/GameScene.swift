@@ -48,9 +48,13 @@ class GameScene: SKScene {
     var player : SKSpriteNode?
     let proj: SKSpriteNode = SKSpriteNode(imageNamed: "projectile")
     var projArray = [SKSpriteNode]()
-    var pressNotifier = false
+    var fireNotifier = false
+    var jumpNotifier = false
     var maxFireRate = 5
-
+    var startTime = TimeInterval()
+    var currentTime = NSDate.timeIntervalSinceReferenceDate
+    
+    var elapsedTime = TimeInterval()
     func setUpScene() {
         
         //let player = childNode(withName: "player")
@@ -92,18 +96,23 @@ class GameScene: SKScene {
         }
     #endif
     
-    override func update(_ currentTime: TimeInterval) {
+    override func update(_ curTime: TimeInterval) {
         
         if projArray.count > 0 {
-            pressNotifier = true
+            fireNotifier = true
         }
-        if pressNotifier == true { // Need to run this every frame after the first press and not after all the projectiles are offscreen
+        if fireNotifier == true { // Need to run this every frame after the first press and not after all the projectiles are offscreen
             
-            print(projArray.count)
+            
             outOfScreen()
         }
-        
-        
+        if jumpNotifier == true {
+            normalPos()
+            
+            elapsedTime = currentTime - startTime
+            //print(elapsedTime)
+        }
+        currentTime = NSDate.timeIntervalSinceReferenceDate
         
 
         }
@@ -115,7 +124,7 @@ class GameScene: SKScene {
 
         proj.zPosition = 1000
         addChild(proj)
-        
+
         
         let moveRight = SKAction.moveBy(x: ((UIScreen.main.bounds.width*2)+20), y: 0.0, duration: 3)
         
@@ -144,12 +153,15 @@ class GameScene: SKScene {
             
             if tlocation.x > UIScreen.main.bounds.width && projArray.count < maxFireRate {
                 didFire()
-                pressNotifier = true
+                
             }
             if tlocation.x < UIScreen.main.bounds.width && player!.position.y == yPlPos {
-                print("JUMP")
+                //print("JUMP")
+                jumpNotifier = true
+                startTime = currentTime
+                //print(currentTime)
             }
-            print(t.location(in: view))
+            //print(t.location(in: view))
             
 
         }
@@ -159,8 +171,14 @@ class GameScene: SKScene {
             //!proj.intersects(self)
             projArray[0].removeFromParent()
             projArray.remove(at: 0)
-            pressNotifier = false
+            fireNotifier = false
             
+        }
+    }
+    func normalPos() {
+        if (player?.position.y)! < yPlPos {
+            player?.position.y = yPlPos
+            jumpNotifier = true
         }
     }
     
