@@ -53,8 +53,10 @@ class GameScene: SKScene {
     var maxFireRate = 5
     var startTime = TimeInterval()
     var currentTime = NSDate.timeIntervalSinceReferenceDate
-    
     var elapsedTime = TimeInterval()
+    let gravity = -9.8 * 10
+    var jumpSpeed = 50.0
+    
     func setUpScene() {
         
         //let player = childNode(withName: "player")
@@ -97,7 +99,7 @@ class GameScene: SKScene {
     #endif
     
     override func update(_ curTime: TimeInterval) {
-        
+        normalPos()
         if projArray.count > 0 {
             fireNotifier = true
         }
@@ -108,9 +110,10 @@ class GameScene: SKScene {
         }
         if jumpNotifier == true {
             normalPos()
-            
             elapsedTime = currentTime - startTime
-            //print(elapsedTime)
+            print(jumpSpeed + (gravity * elapsedTime))
+            player?.position.y += CGFloat(jumpSpeed + (gravity * elapsedTime))
+            
         }
         currentTime = NSDate.timeIntervalSinceReferenceDate
         
@@ -178,7 +181,7 @@ class GameScene: SKScene {
     func normalPos() {
         if (player?.position.y)! < yPlPos {
             player?.position.y = yPlPos
-            jumpNotifier = true
+            jumpNotifier = false
         }
     }
     
