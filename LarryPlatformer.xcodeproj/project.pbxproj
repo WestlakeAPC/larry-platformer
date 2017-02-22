@@ -106,7 +106,7 @@
 				TargetAttributes = {
 					522574AE1E11FD1200333C15 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = M64HPXXUJF;
+						DevelopmentTeam = 7DBYYAPY9L;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -275,7 +275,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = M64HPXXUJF;
+				DEVELOPMENT_TEAM = 7DBYYAPY9L;
 				INFOPLIST_FILE = SpriteKitTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -290,7 +290,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = M64HPXXUJF;
+				DEVELOPMENT_TEAM = 7DBYYAPY9L;
 				INFOPLIST_FILE = SpriteKitTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

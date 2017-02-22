@@ -40,11 +40,10 @@ class GameScene: SKScene {
     
     var xPlPos = UIScreen.main.bounds.width * 0.1 * 2// For Screen Size
     var yPlPos = UIScreen.main.bounds.height-UIScreen.main.bounds.height+350.0 // Background always is same distance to bottom so player needs to touch the ground
-    var xUpPos = 50.0 * 2 //Hardcoded, but fits for all screen so it reachable with fingers
-    var yUpPos = 50.0 * 2
+    
     var xPrPos = UIScreen.main.bounds.width * 0.1 * 2// For Screen Size
     var yPrPos = UIScreen.main.bounds.height-UIScreen.main.bounds.height+325.0
-    //let UP: SKSpriteNode = SKSpriteNode(imageNamed: "UP")
+    
     var player : SKSpriteNode?
     let proj: SKSpriteNode = SKSpriteNode(imageNamed: "projectile")
     var projArray = [SKSpriteNode]()
@@ -123,7 +122,7 @@ class GameScene: SKScene {
         
         let proj = SKSpriteNode(imageNamed: "projectile")
         projArray.append(proj)
-        proj.position = CGPoint(x: xPrPos, y: yPrPos)
+        proj.position = CGPoint(x: xPrPos, y: (player?.position.y)!)
 
         proj.zPosition = 1000
         addChild(proj)
