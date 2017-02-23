@@ -58,7 +58,7 @@ class GameScene: SKScene {
     
     func setUpScene() {
         
-        //let player = childNode(withName: "player")
+        
         self.player = self.childNode(withName: "player") as? SKSpriteNode
         proj.position = CGPoint(x: xPlPos, y: yPlPos)
         
@@ -102,6 +102,7 @@ class GameScene: SKScene {
         if projArray.count > 0 {
             fireNotifier = true
         }
+        
         if fireNotifier == true { // Need to run this every frame after the first press and not after all the projectiles are offscreen
             
             
@@ -110,7 +111,6 @@ class GameScene: SKScene {
         if jumpNotifier == true {
             normalPos()
             elapsedTime = currentTime - startTime
-            print(jumpSpeed + (gravity * elapsedTime))
             player?.position.y += CGFloat(jumpSpeed + (gravity * elapsedTime))
             
         }
